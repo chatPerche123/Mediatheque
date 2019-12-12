@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
         //création médiathèque
         Mediatheque mediatheque = Mediatheque.getInstance("Mediathèque de Rennes", "n°9 rue De Rennes", "0299555871");
-        Emprunteur emprunteur1 = new Emprunteur("Dupond", "Fanille", "fabien@domaine.fr");
-        Emprunteur emprunteur2 = new Emprunteur("Dupond", "Mariano", "Charline@domaine.fr");
+        Emprunteur emprunteur1 = new Emprunteur("Dupond", "Fanille", "Fanille@domaine.fr");
+        Emprunteur emprunteur2 = new Emprunteur("Dupond", "Mariano", "Mariano@domaine.fr");
 
         Livre livre1 = new Livre("2-7177-2113-4", "Dubosk", "Livre de Toto", "Enfant", "MaisonDesEnfants", 50, 3);
         Cd cd1 = new Cd(6546456, "Les Inconnus", "Les Inconnus font du skie", "Music", "MaisonDesInconnus", 30, 2);
