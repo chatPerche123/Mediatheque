@@ -1,10 +1,12 @@
 
 
 public class Livre extends Media {
+    //Variables
     private final int nombrePageLivre;
     private final String auteurLivre;
+    //////////////////////////////////////////////
     
-    
+    //Constructeurs
     public Livre() {
         super();    
         this.nombrePageLivre = 0;
@@ -18,10 +20,11 @@ public class Livre extends Media {
         this.nombrePageLivre = nombrePageLivre;
         this.auteurLivre = auteurLivre;
     }
-      
+    //////////////////////////////////////////////
+    
+    //Getters and setters
     public int getNombrePage() {
         return this.nombrePageLivre;
     }
-
-    
+   
 }

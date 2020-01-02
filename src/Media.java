@@ -1,10 +1,10 @@
 
-import java.util.Date;
-
+import java.util.Map;
 
 
 public class Media<A> implements AfficherInformation{
-    //Un identifiant unique dont le format diffère selon le type
+    //Variables
+        //Un identifiant unique dont le format diffère selon le type
     protected A idMedia;
     //Etat du média (dispo ou non)
     protected boolean Etat;
@@ -13,7 +13,9 @@ public class Media<A> implements AfficherInformation{
     protected String genreMedia;
     protected String maisonProductionMedia; 
     protected int nombreExemplaire;
+    //////////////////////////////////////////////
     
+    //Constructeurs
     public Media() {     
         this.titreMedia = "";
         this.genreMedia = "";
@@ -26,8 +28,9 @@ public class Media<A> implements AfficherInformation{
         this.maisonProductionMedia = maisonProductionMedia;
         this.nombreExemplaire = nombreExemplaire;
     }
+    //////////////////////////////////////////////
     
-    
+    //Getters and setters
     protected A getIdMedia() {
         return this.idMedia;
     }
@@ -51,7 +54,8 @@ public class Media<A> implements AfficherInformation{
             this.nombreExemplaire--;
         }
     } 
-
+    //////////////////////////////////////////////
+    
     @Override
     public String descriptionMedia() {
         return this.getIdMedia()+" "+this.getTitreMedia()+" "+this.genreMedia+" "+this.getMaisonProductionMedia();
@@ -60,10 +64,28 @@ public class Media<A> implements AfficherInformation{
     public int nombreMedia() {
         return this.getNombreExemplaire();
     }
+    
     /*
-    Date prochaineDispo() {
+    protected void prochaineDispo(String nomMedia) {
+        Emprunt emprunt = new Emprunt();
         
+	for(Map.Entry<Emprunteur, Media> entry : emprunt.listEmprunt.entrySet()) {
+		Emprunteur emprunteur = entry.getKey();
+		Media media = entry.getValue();
+                
+                if(media.getTitreMedia().equals(nomMedia)) {
+                    if(media.getNombreExemplaire() > 0) {
+                        System.out.println("Le média est disponile");
+                    
+                    }else {
+                        
+                    }
+                }
+                EmprunterObserver o = (EmprunterObserver)emprunteur;
+                
+                o.update(media.getTitreMedia());
+		//System.out.println("Key: " + emprunteur.getNomEmprunteur() + ", Value: " + media.getTitreMedia());
+	}        
     }
     */
-
 }

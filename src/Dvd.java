@@ -1,10 +1,12 @@
 
 
 public class Dvd extends Media {
+    //Variables
     private final int dureeMinuteDVD;
     private final String realisateurDvd;
+    //////////////////////////////////////////////
     
-    
+    //Constructeurs
     public Dvd() {
         super();    
         this.dureeMinuteDVD = 0;
@@ -18,7 +20,8 @@ public class Dvd extends Media {
         this.dureeMinuteDVD = dureeMinuteDVD;
         this.realisateurDvd = realisateurDvd;
     }
-
+    //////////////////////////////////////////////
+    
     public int getDureeMinuteDvd() {
         return this.dureeMinuteDVD;
     }

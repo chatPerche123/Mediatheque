@@ -1,9 +1,12 @@
 
 
 public class Cd extends Media {
+    //variables
     private final int dureeMinuteDisc;
     private final String groupeCD;
+    //////////////////////////////////////////////
     
+    //Constructeurs
     public Cd() {
         super();
         
@@ -18,7 +21,9 @@ public class Cd extends Media {
         this.dureeMinuteDisc = dureeMinuteDisc;
         this.groupeCD = groupeCD;
     }
-
+    //////////////////////////////////////////////
+    
+    //Getters and setters
     public int getDureeMinuteDisc() {
         return this.dureeMinuteDisc;
     }

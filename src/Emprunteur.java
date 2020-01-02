@@ -1,9 +1,9 @@
 
 import java.util.ArrayList;
 
-
-public class Emprunteur implements EmprunterObserver{   
-    //Accès à l'instance unique de la mediathèque
+public class Emprunteur implements EmprunterObserver{  
+    //Variables
+        //Accès à l'instance unique de la mediathèque
     Mediatheque mediatheque = Mediatheque.uniqueInstance;
     //Permet d'incrémenter un identifiant unique (idEmprunteur) en static
     private static int idIncrement = 1;
@@ -16,7 +16,9 @@ public class Emprunteur implements EmprunterObserver{
     private String nomEmprunteur;
     private String prenomEmprunteur;
     private String adresseEmailEmprunteur;
+    //////////////////////////////////////////////
     
+    //Constructeurs
     public Emprunteur() { 
     }
     public Emprunteur(String nomEmprunteur, String prenomEmprunteur, String adresseEmailEmprunteur) {
@@ -30,8 +32,9 @@ public class Emprunteur implements EmprunterObserver{
         //incrémente l'identifiant unique
         this.idEmprunteur = Emprunteur.idIncrement++;
     }
+    //////////////////////////////////////////////
     
-    
+    //Getters and setters
     protected String getNomEmprunteur() {
         return this.nomEmprunteur;
     }
@@ -47,6 +50,9 @@ public class Emprunteur implements EmprunterObserver{
     protected int getIdEmprunteur() {
         return this.idEmprunteur;
     }
+    protected String getEmailEmprunteur() {
+        return this.adresseEmailEmprunteur;
+    }
     protected void setNombreMediaEmprunter(boolean value) {
         if(value) {
             this.nbMediaEmprunter++;
@@ -55,8 +61,9 @@ public class Emprunteur implements EmprunterObserver{
             this.nbMediaEmprunter--;
         }
     }
+    //////////////////////////////////////////////
     
-    
+    //Méthodes
     protected void afficherEmprunt() {
         if(this.getNbMediaEmprunter() == 0) {
             System.out.println(this.getNomPrenomEmprunteur()+" n'a rien encore emprunter.");  
@@ -66,15 +73,23 @@ public class Emprunteur implements EmprunterObserver{
             }
         }
     }
-    
-    
+    protected boolean possedeDeja(Media media) {
+       for(Media mediaEmprunt : listEmprunt) {
+            if(mediaEmprunt.getTitreMedia().equals(media.getTitreMedia())) {
+                System.out.println("L'emprunteur ne peut pas emprunter plusieurs exemplaires d'un même media");
+                return true;
+            }
+        }
+       
+       return false;
+    }
     protected void souhaiteEmprunter(Media media) {
             //Vérifie que l'emprunteur n'a pas plus de 3 médias
             if(this.getNbMediaEmprunter() >= 3) {
                 System.out.println(this.getNomPrenomEmprunteur()+" a atteint le nombre maximum de média");
-
-            //vérifie que le média est disponible
-            }else if(mediatheque.mediaDisponile(media)) {
+                
+            //vérifie que le média est disponible et que l'emprunteur n'en possède pas déjà un exemplaire
+            }else if(mediatheque.mediaDisponile(media) && this.possedeDeja(media) == false) {
                 mediatheque.ajouterEmprunt(this, media);
                 
                 System.out.println("Emprunt ("+media.getTitreMedia()+") accepter.");
@@ -86,8 +101,7 @@ public class Emprunteur implements EmprunterObserver{
                 mediatheque.ajouterEmprunteur(this);
                 //réduit le nombre d'exemplaire disponible
                 mediatheque.retirerExemplaireMedia(media);
-                
-
+               
             }else {
                 System.out.println("Media ("+media.getTitreMedia()+") non disponible ou ne faisant pas partie de la liste");
             }
@@ -107,6 +121,22 @@ public class Emprunteur implements EmprunterObserver{
         }else {
             System.out.println("L'emprunteur essaie de rendre un média qu'il ne possède pas");
         }
+    }
+    //////////////////////////////////////////////
+    
+    public void update(String media) {
+        System.out.println(this.getNomPrenomEmprunteur()+" est en retard pour le média "+media+"\n");
+    }
+
+    @Override
+    public void update(String email, String subject, String media) {
+        String mail = "Mail from: mediatheque@lecnam.net\n"
+                +"To: "+email+"\n"
+                +"Subject: "+subject+"\n"
+                +"\tVous avez un média en retard: "+media;
+                
+                System.out.println(mail+"\n");
+                
     }
   
 }
