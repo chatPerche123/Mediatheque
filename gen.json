@@ -1,0 +1,42 @@
+[
+  {
+    "nombrePageLivre": 50,
+    "auteurLivre": "Test",
+    "idMedia": "2-7177-2113-4",
+    "Etat": false,
+    "titreMedia": "Livre de Toto",
+    "genreMedia": "Enfant",
+    "maisonProductionMedia": "MaisonDesEnfants",
+    "nombreExemplaire": 3
+  },
+  {
+    "dureeMinuteDisc": 30,
+    "groupeCD": "Les Inconnus",
+    "idMedia": 6546456,
+    "Etat": false,
+    "titreMedia": "Les Inconnus font du skie",
+    "genreMedia": "Music",
+    "maisonProductionMedia": "MaisonDesInconnus",
+    "nombreExemplaire": 2
+  },
+  {
+    "dureeMinuteDVD": 120,
+    "realisateurDvd": "Micheal Bay",
+    "idMedia": 8979,
+    "Etat": false,
+    "titreMedia": "Les saucoupes de l\u0027espace",
+    "genreMedia": "Humour",
+    "maisonProductionMedia": "MaisonDeMichealBay",
+    "nombreExemplaire": 0
+  },
+  {
+    "nombrePageLivre": 50,
+    "auteurLivre": "Test",
+    "idMedia": "2-7177-2113-4",
+    "Etat": false,
+    "titreMedia": "Livre de Toto",
+    "genreMedia": "Enfant",
+    "maisonProductionMedia": "MaisonDesEnfants",
+    "nombreExemplaire": 3
+  }
+]

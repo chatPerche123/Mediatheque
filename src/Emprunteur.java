@@ -111,6 +111,8 @@ public class Emprunteur implements EmprunterObserver{
         if(this.listEmprunt.contains(media)) {
             //décrémente le nombre de média emprunter
             this.setNombreMediaEmprunter(false);
+            
+            
             //supprime l'emprunteur s'il n'a plus de média
             mediatheque.supprimerEmprunteur(this);
             //rendre le media

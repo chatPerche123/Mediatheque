@@ -1,5 +1,13 @@
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,22 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import java.io.FileNotFoundException; 
-import java.io.PrintWriter; 
-import java.util.LinkedHashMap; 
-import java.util.Map; 
-import org.json.simple.JSONArray; 
-import org.json.simple.JSONObject; 
-import java.io.FileReader; 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Iterator; 
-import java.util.Map; 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.simple.JSONArray; 
-import org.json.simple.JSONObject; 
-import org.json.simple.parser.*; 
+
 
 public class Mediatheque implements MediathequeSubject {
     //Variables
@@ -40,7 +33,6 @@ public class Mediatheque implements MediathequeSubject {
     List<Media> listMedia;
     List<Emprunteur> listEmprunteur;
     
-    JSONObject json; 
     
     
     //////////////////////////////////////////////
@@ -116,7 +108,8 @@ public class Mediatheque implements MediathequeSubject {
     public void ajouterEmprunteur(Object o) {
         if(!this.listEmprunteur.contains((Emprunteur)o)) { 
             System.out.println("Ajout du nouvelle emprunteur "+((Emprunteur)o).getNomPrenomEmprunteur()+" à la liste");
-
+            //ajout emprunteur à la liste
+            this.listEmprunteur.add((Emprunteur)o);
         }else {
             System.out.println("Emprunteur "+((Emprunteur)o).getNomPrenomEmprunteur()+" existait déjà dans la liste");
         }
@@ -127,6 +120,8 @@ public class Mediatheque implements MediathequeSubject {
            System.out.println("0 emprunt, suppression de "+o.getNomPrenomEmprunteur()+" de la liste");
            //suppression d'emprunteur de la liste des emprunteurs
            this.listEmprunteur.remove(o);        
+       }else {
+           System.out.println("Il lui reste 1 ou plusieurs emprunts");
        }
     }
     @Override
@@ -197,6 +192,7 @@ public class Mediatheque implements MediathequeSubject {
     }
     protected void getListEmprunteur(){
         System.out.println("La liste des emprunteurs de la médiathèque: ");
+        System.out.println("Taille "+listEmprunteur.size());
         for(Emprunteur item : this.listEmprunteur) {
             System.out.println(item.getNomPrenomEmprunteur());
         }
@@ -212,9 +208,36 @@ public class Mediatheque implements MediathequeSubject {
      *
      */
     protected void sauvegardeMediatheque() throws FileNotFoundException  {
-        this.json = new JSONObject(); 
-        Map m = new LinkedHashMap();
+        Gson gson = new Gson();     
+        gson = new GsonBuilder().setPrettyPrinting().create();
         
+        
+        String strJson = gson.toJson(this.listMedia);
+        //marche pas
+        //String d = gson.toJson(this.empruntArrayList);
+        
+        FileWriter writer = null;
+        
+        try {
+          writer = new FileWriter("gen.json");
+          writer.write(strJson);
+          
+          //writer.write(d);
+        } catch (IOException e) {
+          e.printStackTrace();
+        } finally {
+          if (writer != null) {
+           try {
+            writer.close();
+           } catch (IOException e) {
+            e.printStackTrace();
+           }
+          }
+          
+
+          
+        
+        /*
         for(Media media : this.listMedia) {
             m.put("idMedia", media.idMedia);
             m.put("titre", media.titreMedia);
@@ -222,43 +245,12 @@ public class Mediatheque implements MediathequeSubject {
             m.put("maisonProduction", media.maisonProductionMedia);
             m.put("nbExemplaire", media.nombreExemplaire);
         }
-        
-        
-        Iterator<Map.Entry> itr1 = m.entrySet().iterator(); 
-        while (itr1.hasNext()) { 
-            Map.Entry pair = itr1.next(); 
-            System.out.println(pair.getKey() + " : " + pair.getValue()); 
-        } 
-
-        
-        json.put("Media", m);
-        // writing JSON to file:"JSONExample.json" in cwd 
-        PrintWriter pw = new PrintWriter("JSONExample.json"); 
-        pw.write(json.toJSONString()); 
-          
-        pw.flush(); 
-        pw.close(); 
+        */
     }
-    
-    protected void contenuJson() throws FileNotFoundException, IOException, ParseException {
-        // parsing file "JSONExample.json" 
-        Object obj = new JSONParser().parse(new FileReader("JSONExample.json")); 
-          
-        // typecasting obj to JSONObject 
-        JSONObject jo = (JSONObject) obj; 
-        
-        // getting address 
-        Map media = ((Map)jo.get("Media")); 
-          
-        // iterating address Map 
-        Iterator<Map.Entry> itr1 = media.entrySet().iterator(); 
-        while (itr1.hasNext()) { 
-            Map.Entry pair = itr1.next(); 
-            System.out.println(pair.getKey() + " : " + pair.getValue()); 
-        } 
-    }
-    
+    /*
+    protected void contenuJson() {
 
-    
-    
+    }
+*/
+    }
 }
