@@ -2,6 +2,7 @@
 import java.io.FileNotFoundException;
 /*
 Class de test
+LIEN GITHUB: https://github.com/chatPerche123/Mediatheque
 */
 
 public class Main {
