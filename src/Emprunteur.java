@@ -1,6 +1,9 @@
 
 import java.util.ArrayList;
 
+/*
+Class propre à l'Emprunteur on l'on voit ses emprunts et surtout le nombre de média emprunter pour imposer une limite
+*/
 public class Emprunteur implements EmprunterObserver{  
     //Variables
         //Accès à l'instance unique de la mediathèque

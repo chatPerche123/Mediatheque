@@ -1,5 +1,6 @@
-
-
+/*
+Dvd est un Media (héritage)
+*/
 public class Dvd extends Media {
     //Variables
     private final int dureeMinuteDVD;

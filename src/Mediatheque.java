@@ -17,8 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 
-
-public class Mediatheque implements MediathequeSubject {
+/*
+La classe Mediatheque est unique (Singleton) et a pour rôle de gérer les Emprunts(class) des Emprunteur(Class).
+Il est possible de gérer des Medias(class) et d'informer les Emprunteurs sous certains critères.
+*/
+public class Mediatheque {
     //Variables
         //Singleton
     public static Mediatheque uniqueInstance;
@@ -104,7 +107,7 @@ public class Mediatheque implements MediathequeSubject {
     }
     //////////////////////////////////////////////
     
-    @Override
+    
     public void ajouterEmprunteur(Object o) {
         if(!this.listEmprunteur.contains((Emprunteur)o)) { 
             System.out.println("Ajout du nouvelle emprunteur "+((Emprunteur)o).getNomPrenomEmprunteur()+" à la liste");
@@ -114,7 +117,7 @@ public class Mediatheque implements MediathequeSubject {
             System.out.println("Emprunteur "+((Emprunteur)o).getNomPrenomEmprunteur()+" existait déjà dans la liste");
         }
     }
-    @Override
+    
     public void supprimerEmprunteur(Emprunteur o) {
        if(o.getNbMediaEmprunter() == 0) {
            System.out.println("0 emprunt, suppression de "+o.getNomPrenomEmprunteur()+" de la liste");
@@ -124,7 +127,7 @@ public class Mediatheque implements MediathequeSubject {
            System.out.println("Il lui reste 1 ou plusieurs emprunts");
        }
     }
-    @Override
+    
     public void informerRetardEmprunteur() {
         //On met à jours les etats avant d'informer les emprunteurs
         this.miseAjoursEtat();
@@ -140,7 +143,7 @@ public class Mediatheque implements MediathequeSubject {
 		//System.out.println("Key: " + emprunteur.getNomEmprunteur() + ", Value: " + media.getTitreMedia());
 	}
     } 
-    @Override
+    
     public void ajouterNouveauMedia(Object o) {
         if(!this.listMedia.contains((Media)o)) {
             System.out.println("Ajout d'un nouveau média:\n"+((Media)o).descriptionMedia());
@@ -150,17 +153,17 @@ public class Mediatheque implements MediathequeSubject {
             System.out.println("Le média ne sera pas rajouté, il existe déjà");
         }   
     }
-    @Override
+    
     public void rendreMedia(Object o) {
         this.listMedia.add((Media)o);
         ((Media)o).setNombreExemplaire(true);
     }
-    @Override
+    
     //réduit le nombre d'exemplaire disponible
     public void retirerExemplaireMedia(Object o) {
         ((Media)o).setNombreExemplaire(false);
     }
-    @Override
+    
     public boolean mediaDisponile(Object o) {
         //Si le média est disponible
         if(((Media)o).getNombreExemplaire() == 0) {
@@ -233,10 +236,7 @@ public class Mediatheque implements MediathequeSubject {
             e.printStackTrace();
            }
           }
-          
-
-          
-        
+         
         /*
         for(Media media : this.listMedia) {
             m.put("idMedia", media.idMedia);

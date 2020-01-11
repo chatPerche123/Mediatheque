@@ -2,6 +2,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+/*
+Class qui permet la gestion des emprunts et de faire la jonction entre l'Emprunteur et la Mediatheque
+*/
 public class Emprunt {
     //Variables
     Mediatheque mediatheque = Mediatheque.uniqueInstance;

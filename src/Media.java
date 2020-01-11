@@ -1,8 +1,9 @@
 
 import java.util.Map;
-
-
-public class Media<A> implements AfficherInformation{
+/*
+Class générique qui permet de géger par héritage la création de plusieurs types de média différents
+*/
+public class Media<A> {
     //Variables
         //Un identifiant unique dont le format diffère selon le type
     protected A idMedia;
@@ -56,11 +57,11 @@ public class Media<A> implements AfficherInformation{
     } 
     //////////////////////////////////////////////
     
-    @Override
+    
     public String descriptionMedia() {
         return this.getIdMedia()+" "+this.getTitreMedia()+" "+this.genreMedia+" "+this.getMaisonProductionMedia();
     }
-    @Override
+    
     public int nombreMedia() {
         return this.getNombreExemplaire();
     }

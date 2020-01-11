@@ -1,5 +1,6 @@
-
-
+/*
+Cd est un média (héritage)
+*/
 public class Cd extends Media {
     //variables
     private final int dureeMinuteDisc;

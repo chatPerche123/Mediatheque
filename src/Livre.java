@@ -1,5 +1,6 @@
-
-
+/*
+Livre est un Media (héritage)
+*/
 public class Livre extends Media {
     //Variables
     private final int nombrePageLivre;
